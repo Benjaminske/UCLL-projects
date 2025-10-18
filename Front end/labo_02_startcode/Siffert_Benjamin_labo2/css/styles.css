@@ -1,0 +1,42 @@
+body{
+    color: #075BE3;
+    background-image: url('../images/background.webp');
+}
+header{
+    background-color: #07E3E0;
+    color: #fff;
+}
+p{
+    font-size: 1.5em;
+}
+footer{
+    text-align: center;
+}
+.job-title {
+font-style: italic;
+}
+#skills-title {
+color: #07A1E3;
+}
+.profile {
+color: #52B7E3;
+}
+.profile p {
+font-size: 18px;
+}
+h1, h2, h3 {
+font-family: 'Georgia', serif;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+h1 {
+font-size: 2.5em;
+}
+h2 {
+font-size: 1.8em;
+}
+section{
+    border: solid 3px #07E395;
+}
+.skills ul{
+    list-style-type:lower-greek ;
+}

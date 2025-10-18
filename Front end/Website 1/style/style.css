@@ -1,0 +1,27 @@
+body{
+    background-color: black;
+    color: aliceblue;
+    padding: 0px;
+    margin: 0px;
+}
+header{
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    gap: 15vw;
+
+}
+main{ 
+    display: flex;
+}
+article{ 
+    width: 80%;
+}
+section{
+    width: 20%;
+
+}
+section img{
+    height: 70vh;
+    width: 20vw;
+}
