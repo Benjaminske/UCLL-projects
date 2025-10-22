@@ -1,0 +1,6 @@
+[
+  "test.py::test_greet[Anne-Hello, Anne!]",
+  "test.py::test_greet[Consuela-Hello, Consuela!]",
+  "test.py::test_greet[John-Hello, John!]",
+  "test.py::test_greet[Peter-Hello, Peter!]"
+]

@@ -1,0 +1,6 @@
+{
+  "test.py::test_greet[John-Hello, John!]": true,
+  "test.py::test_greet[Peter-Hello, Peter!]": true,
+  "test.py::test_greet[Anne-Hello, Anne!]": true,
+  "test.py::test_greet[Consuela-Hello, Consuela!]": true
+}
