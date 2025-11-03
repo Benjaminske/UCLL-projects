@@ -13,7 +13,6 @@ def dbl_space_annihalator(string):
     text_clear =""
     for i in range(0, len(string)):
         
-        
         if string[i] == ' ':
             if (i == len(string)-1) or (string[i+1] != ' '):
                 text_clear += string[i]
@@ -22,4 +21,4 @@ def dbl_space_annihalator(string):
             
              
     return text_clear
-print(f"'{dbl_space_annihalator("bert    en ernie  ")}'")
+print(f"'{dbl_space_annihalator("bert    en ernie en     ik ")}'")
