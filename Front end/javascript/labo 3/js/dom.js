@@ -5,6 +5,15 @@ const addStatus = (status) =>
   (document.getElementById("status").innerHTML =
     document.getElementById("status").innerHTML + "<p>" + status + "</p>");
 
+
+    // legt dingen onder elkaar want das mooier want ander is da lelijk
+const addStatusArray = (statusArray) =>
+  statusArray.forEach(item =>
+    document.getElementById("status").innerHTML += "<p>" + item + "</p>"
+  );
+
+
+
 const createTableRow = () => document.createElement("tr");
 
 const addTableRow = ({ tableBody, tableRow }) => {
