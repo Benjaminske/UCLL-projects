@@ -1,12 +1,15 @@
-const Ark= {name: "Ark Survival Ascended", type: "survival", rating : 6, IsFavorite : true}
-const Silksong= {name: "Hollow Knight: Silksong", type: "Metroidvania", rating : 10, IsFavorite : false}
-const HollowKnight= {name: "Hollow Knight", type: "Metroidvania", rating : 10, IsFavorite : true }
-const Hades= {name: "Hades", type: "Roguelike", rating : 9, IsFavorite : false}
+const GamesArray = [
+     Ark= {name: "Ark Survival Ascended", type: "survival", rating : 6, IsFavorite : true},
+     Silksong= {name: "Hollow Knight: Silksong", type: "Metroidvania", rating : 10, IsFavorite : false},
+     HollowKnight= {name: "Hollow Knight", type: "Metroidvania", rating : 10, IsFavorite : true },
+     Hades= {name: "Hades", type: "Roguelike", rating : 9, IsFavorite : false}
+];
+const [a, b] = GamesArray;
 
-function gameToString(Game)
+function gameToString(game)
 {
  // Add Properties
-let Gameinfo = "Name: " + Game.name + ", Type: " + Game.type + ", Rating: " + Game.rating +"/10" + " Favorite? " + Game.IsFavorite; 
+let Gameinfo = "Name: " + game.name + ", Type: " + game.type + ", Rating: " + game.rating +"/10" + " Favorite? " + game.IsFavorite; 
 return Gameinfo
 }
 function bestGameToString(Game)
@@ -16,61 +19,59 @@ let Gameinfo = Game.name + ". With a rating of: " + Game.rating +"/10!";
 return Gameinfo
 }
 
-function getAverageRating(...Games){
+function getAverageRating(){
     let sum = 0;
     let counter =0;
-    for (let Game of Games) sum += Game.rating;
-    for (let Game of Games) counter += 1;
-    let total = sum/counter + "/10";
-    return total;
-    
-
+    for (let Game of GamesArray){
+    sum += Game.rating;
+    counter += 1;
+    }
+    let total = sum/counter;
+    return total.toFixed(2) + "/10";
 }
 
-function getHighestRating(...Games){
-    let ratingList = [];
+function getHighestRating(){
     let topGames = [];
-
-    for(let Game of Games){
+    let ratingList = [];
+    for(let Game of GamesArray){
     ratingList.push(Game.rating);
     sortedRatings = ratingList.sort();
     };
     
 
-    for (let Game of Games){
+    for (let Game of GamesArray){
         if( Game.rating >= sortedRatings[0]){
             topGames.push(Game);};
     };
     return topGames.map(bestGameToString);
 
-        
 }
-
-function printFavoriteGames(...Games){
-    addStatus("<h1>Favorites</h1>");
-    for(let Game of Games){
-        if (Game.IsFavorite == true){
-            let Gameinfo = Game.name; 
-             addStatus(Gameinfo);
-    }
-}
+function first2Games(x){
+    let GameInfo = x.name;
+    return GameInfo
 }
 
 function printAllGames()
 {
-    addStatus("<h1>Library</h1>");
-    addStatus(gameToString(Ark));
-    addStatus(gameToString(Silksong));
-    addStatus(gameToString(HollowKnight));
-    addStatus(gameToString(Hades));
+   for (let Game of GamesArray){
+    addStatus(gameToString(Game));
+  }
     addStatus("<h1> Statistics for Nerds and AI overviews:</h1>");
-    addStatus("<p>Average Game rating: "+ getAverageRating(Ark,Silksong,HollowKnight,Hades) + "</p");
-    printFavoriteGames(Ark, Silksong, HollowKnight, Hades)
-    addStatus("<h1> Top rated games: </h1>");
-    addStatusArray(getHighestRating(Ark,HollowKnight,Silksong,Hades));
+    addStatus("<h1>Ratings</h1>");
+    addStatus("<p>Average Game rating: "+ getAverageRating() + "</p");
 
+    addStatus("<h1>Favorites</h1>");
+    for(let Game of GamesArray){
+        if (Game.IsFavorite == true){
+            let Gameinfo = Game.name; 
+             addStatus(Gameinfo);
+        }
+    }
+    addStatus("<h1>Highest Ratings</h1>");
+    addStatusArray(getHighestRating());
+    addStatus("<h1>My first 2 games</h1>");
+    addStatus(first2Games(a))
+    addStatus(first2Games(b))
 }
-
 printAllGames()
 
-// verder op p 11
