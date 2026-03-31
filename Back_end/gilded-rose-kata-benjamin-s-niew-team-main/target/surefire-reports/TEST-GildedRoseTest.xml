@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="GildedRoseTest" time="0.088" tests="11" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="25"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\Robin\Desktop\UCLL\UCLL-projects\Back_end\gilded-rose-kata-benjamin-s-niew-team-main\target\test-classes;C:\Users\Robin\Desktop\UCLL\UCLL-projects\Back_end\gilded-rose-kata-benjamin-s-niew-team-main\target\classes;C:\Users\Robin\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\Robin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\Robin\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Robin\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\Robin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Robin\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\Robin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\Robin\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Brussels"/>
+    <property name="user.country.format" value="BE"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="25"/>
+    <property name="user.country" value="GB"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="C:\Users\Robin\.jdks\loom-ea-25-loom+1-11\bin"/>
+    <property name="sun.java.command" value="C:\Users\Robin\AppData\Local\Temp\surefire10210933209543948789\surefirebooter-20260320151641142_3.jar C:\Users\Robin\AppData\Local\Temp\surefire10210933209543948789 2026-03-20T15-16-40_942-jvmRun1 surefire-20260320151641142_1tmp surefire_0-20260320151641142_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\Robin\Desktop\UCLL\UCLL-projects\Back_end\gilded-rose-kata-benjamin-s-niew-team-main\target\test-classes;C:\Users\Robin\Desktop\UCLL\UCLL-projects\Back_end\gilded-rose-kata-benjamin-s-niew-team-main\target\classes;C:\Users\Robin\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\Robin\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\Robin\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Robin\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\Robin\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Robin\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.2\junit-jupiter-params-5.8.2.jar;C:\Users\Robin\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\Robin\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Robin"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-09-16"/>
+    <property name="java.home" value="C:\Users\Robin\.jdks\loom-ea-25-loom+1-11"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\Robin\Desktop\UCLL\UCLL-projects\Back_end\gilded-rose-kata-benjamin-s-niew-team-main"/>
+    <property name="style.color" value="always"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\Robin\AppData\Local\Temp\surefire10210933209543948789\surefirebooter-20260320151641142_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="25-loom+1-11"/>
+    <property name="user.name" value="Robin"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="IBM850"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2025.3.2\plugins\maven\lib\maven-event-listener.jar"/>
+    <property name="localRepository" value="C:\Users\Robin\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Robin\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2025.3.2"/>
+    <property name="java.version" value="25-loom"/>
+    <property name="user.dir" value="C:\Users\Robin\Desktop\UCLL\UCLL-projects\Back_end\gilded-rose-kata-benjamin-s-niew-team-main"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="jansi.passthrough" value="true"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Users\Robin\.jdks\loom-ea-25-loom+1-11\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Amazon Corretto\jdk21.0.10_7\bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Muse Hub\lib;C:\Users\Robin\AppData\Local\Programs\Python\Launcher\;C:\Users\Robin\AppData\Local\Microsoft\WindowsApps;C:\Users\Robin\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Robin\AppData\Local\GitHubDesktop\bin;C:\Users\Robin\AppData\Local\Python\bin;C:\Users\Robin\AppData\Local\Programs\Python\Python313\Scripts;C:\Users\Robin\AppData\Roaming\npm;C:\Users\Robin\AppData\Local\Muse Hub\lib;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25-loom+1-11"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="maven.repo.local" value="C:\Users\Robin\.m2\repository"/>
+    <property name="java.class.version" value="69.0"/>
+  </properties>
+  <testcase name="agedBrie_qualityNeverOver50" classname="GildedRoseTest" time="0.038"/>
+  <testcase name="elixirOfTheMongoose" classname="GildedRoseTest" time="0.001"/>
+  <testcase name="elixirOfTheMongoose_qualityNeverBecomesNegative" classname="GildedRoseTest" time="0.001"/>
+  <testcase name="sulfuras" classname="GildedRoseTest" time="0.001"/>
+  <testcase name="elixirOfTheMongoose_overSellin_qualityDicreasesTwiceAsFast" classname="GildedRoseTest" time="0.001"/>
+  <testcase name="conjuredManaCake" classname="GildedRoseTest" time="0.002"/>
+  <testcase name="backstagePasses_sellin10DaysOrLess_qualityIncreasingBy2" classname="GildedRoseTest" time="0.002"/>
+  <testcase name="backstagepasses_sellin5DaysOrLess_qualityIncreasingBy3" classname="GildedRoseTest" time="0.001"/>
+  <testcase name="agedBrie" classname="GildedRoseTest" time="0.0"/>
+  <testcase name="conjuredCinnamonRoll" classname="GildedRoseTest" time="0.001"/>
+  <testcase name="backstagepasses_sellinOver_qualityBecomes0" classname="GildedRoseTest" time="0.001"/>
+</testsuite>
