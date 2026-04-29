@@ -226,8 +226,7 @@ print(f"Years of birth between 2012 and 2017 (sorted): {years}") # [2012, 2014, 
 # For the challenge seekers:
 # Your goal is to print a dog's family tree using indentation and branch-like structure.
 #
-###############
-
+############### 
 def print_visual_family_tree(dog, prefix="", is_last=True, label=""):
     connector = "└── " if is_last else "├── "
     line = f"{prefix}{connector if label else ''}{label}{dog.name} ({dog.birth_year}) - {dog.breed}"
