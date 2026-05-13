@@ -1,6 +1,7 @@
 package be.ucll.controller;
 
 import be.ucll.model.Loan;
+import be.ucll.model.Profile;
 import be.ucll.model.User;
 import be.ucll.service.LoanService;
 import be.ucll.service.UserService;
@@ -46,7 +47,6 @@ public class UserRestController {
     @GetMapping("/{email}/loans")
     public List<Loan> getLoansByUser(@PathVariable("email") String email,
                                      @RequestParam(value = "onlyActive", required = false) Boolean onlyActive) {
-
         return loanService.getLoansByUser(email, onlyActive);
     }
 
@@ -77,9 +77,27 @@ public class UserRestController {
         return userService.getOldestUser();
     }
 
+    @GetMapping("/{email}/profile")
+    public Profile getUserProfile(@PathVariable("email") String email) {
+        return userService.getUserProfile(email);
+    }
+
     @GetMapping("/age/{age}/name/{name}")
     public List<User> getAllUsersOlderThanAndNameContaining(@PathVariable int age, @PathVariable String name) {
         return userService.getAllUsersOlderThanAndNameContaining(age, name);
+    }
+
+    // Story 02: GET /users/interests/{interests}
+    @GetMapping("/interests/{interests}")
+    public List<User> getUsersByInterests(@PathVariable("interests") String interests) {
+        return userService.getUsersByInterests(interests);
+    }
+
+    // Story 03: GET /users/age/{age}/interests/{interests}  (sorted by profile location)
+    @GetMapping("/age/{age}/interests/{interests}")
+    public List<User> getUsersOlderThanWithInterests(@PathVariable int age,
+                                                     @PathVariable("interests") String interests) {
+        return userService.getUsersOlderThanWithInterestsSortedByLocation(age, interests);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

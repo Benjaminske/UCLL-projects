@@ -1,11 +1,12 @@
 package be.ucll.service;
 
 import be.ucll.model.Loan;
+import be.ucll.model.Profile;
 import be.ucll.model.User;
 import be.ucll.repository.LoanRepository;
+import be.ucll.repository.ProfileRepository;
 import be.ucll.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,13 +15,15 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
-    private LoanRepository loanRepository;
+    private final UserRepository userRepository;
+    private final LoanRepository loanRepository;
+    private final ProfileRepository profileRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, LoanRepository loanRepository) {
+    public UserService(UserRepository userRepository, LoanRepository loanRepository, ProfileRepository profileRepository) {
         this.userRepository = userRepository;
         this.loanRepository = loanRepository;
+        this.profileRepository = profileRepository;
     }
 
     public List<User> getAllUsers() {
@@ -30,7 +33,7 @@ public class UserService {
     public List<User> getUsersByName(String name) {
         if (name == null || name.isBlank()) {
             return getAllUsers();
-        };
+        }
 
         List<User> result = userRepository.findByName(name);
         if (result.isEmpty()) {
@@ -60,17 +63,23 @@ public class UserService {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new RuntimeException("User already exists.");
         }
+
+        if (user.getProfile() != null) {
+            Profile profile = profileRepository.save(user.getProfile());
+            user.setProfile(profile);
+        }
+
         return userRepository.save(user);
     }
 
     public User updateUser(String email, User updatedUser) {
         Optional<User> userOptional = userRepository.findByEmail(email);
 
-        if (userOptional.isEmpty()){
+        if (userOptional.isEmpty()) {
             throw new RuntimeException("User does not exist.");
         }
 
-        User user  = userOptional.get();
+        User user = userOptional.get();
 
         user.setAge(updatedUser.getAge());
         user.setName(updatedUser.getName());
@@ -83,11 +92,11 @@ public class UserService {
     public void deleteUser(String email) {
         Optional<User> userOptional = userRepository.findByEmail(email);
 
-        if (userOptional.isEmpty()){
+        if (userOptional.isEmpty()) {
             throw new RuntimeException("User does not exist.");
         }
 
-        User user  = userOptional.get();
+        User user = userOptional.get();
 
         List<Loan> activeLoans = loanRepository.getLoansByUser(email, true);
         if (activeLoans != null && !activeLoans.isEmpty())
@@ -105,7 +114,22 @@ public class UserService {
         }
 
         return users.get(0);
+    }
 
+    public Profile getUserProfile(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
+
+        if (userOptional.isEmpty()) {
+            throw new RuntimeException("User does not exist.");
+        }
+
+        Profile profile = userOptional.get().getProfile();
+
+        if (profile == null) {
+            throw new RuntimeException("User has no profile.");
+        }
+
+        return profile;
     }
 
     public List<User> getAllUsersOlderThanAndNameContaining(int age, String name) {
@@ -113,6 +137,36 @@ public class UserService {
 
         if (users == null || users.isEmpty()) {
             throw new RuntimeException("No users found older than " + age + " and containing " + name + " in their name.");
+        }
+
+        return users;
+    }
+
+    // Story 02: Retrieve users with specific interests
+    public List<User> getUsersByInterests(String interests) {
+        if (interests == null || interests.isBlank()) {
+            throw new RuntimeException("Interests cannot be empty.");
+        }
+
+        List<User> users = userRepository.findByProfileInterestsContaining(interests);
+
+        if (users == null || users.isEmpty()) {
+            throw new RuntimeException("No users found with interests containing: " + interests);
+        }
+
+        return users;
+    }
+
+    // Story 03: Retrieve users older than a given age, with specific interests, sorted by location
+    public List<User> getUsersOlderThanWithInterestsSortedByLocation(int age, String interests) {
+        if (interests == null || interests.isBlank()) {
+            throw new RuntimeException("Interests cannot be empty.");
+        }
+
+        List<User> users = userRepository.findByAgeGreaterThanAndProfileInterestsContainingOrderByProfileLocation(age, interests);
+
+        if (users == null || users.isEmpty()) {
+            throw new RuntimeException("No users found older than " + age + " with interests containing: " + interests);
         }
 
         return users;

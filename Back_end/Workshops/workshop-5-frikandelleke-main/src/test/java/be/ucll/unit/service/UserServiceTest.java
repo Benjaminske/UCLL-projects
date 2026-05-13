@@ -2,14 +2,12 @@ package be.ucll.unit.service;
 
 import be.ucll.model.User;
 import be.ucll.repository.LoanRepository;
-import be.ucll.repository.UserRepository;
 import be.ucll.service.UserService;
+import be.ucll.unit.repository.ProfileRepositoryStub;
+import be.ucll.unit.repository.UserRepositoryStub;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
@@ -18,20 +16,22 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserServiceTest {
 
     private UserService userService;
-    private UserRepository userRepository;
-    @SpringBootTest()
+    private UserRepositoryStub userRepository;
 
-    @AutoConfigureWebTestClient
+    @BeforeEach
+    public void setUp() {
+        userRepository = new UserRepositoryStub();
+        userService = new UserService(userRepository, new LoanRepository(), new ProfileRepositoryStub());
+    }
 
-    @Sql("classpath:schema.sql")
     @Test
     public void givenUserRepositoryWithUsers_whenCallingAllUsers_allUsersFromRepositoryArePresent() {
         // when
         List<User> result = userService.getAllUsers();
 
         // then
-        assertEquals(userRepository.findByName(name).size(), result.size());
-        assertTrue(userRepository.findByName(name).containsAll(result));
+        assertEquals(userRepository.getUsers().size(), result.size());
+        assertTrue(userRepository.getUsers().containsAll(result));
     }
 
     @Test
@@ -291,6 +291,78 @@ public class UserServiceTest {
                 () -> userService.deleteUser(email));
 
         assertEquals("User has active loans.", ex.getMessage());
+    }
+
+
+    // Story 02 unit tests
+
+    @Test
+    public void givenUsersWithProfiles_whenGetByInterests_thenMatchingUsersReturned() {
+        // given: add a user with a profile to the stub
+        be.ucll.model.Profile p = new be.ucll.model.Profile("Dev", "Leuven", "Science, Coding");
+        be.ucll.model.User userWithProfile = new be.ucll.model.User("Tech User", 25, "tech@ucll.be", "techpass1");
+        userWithProfile.setProfile(p);
+        userRepository.users.add(userWithProfile);
+
+        // when
+        List<User> result = userService.getUsersByInterests("Science");
+
+        // then
+        assertEquals(1, result.size());
+        assertTrue(result.contains(userWithProfile));
+    }
+
+    @Test
+    public void givenNoUsersMatchInterests_whenGetByInterests_thenExceptionIsThrown() {
+        Exception ex = Assertions.assertThrows(
+                RuntimeException.class,
+                () -> userService.getUsersByInterests("Skydiving"));
+
+        assertEquals("No users found with interests containing: Skydiving", ex.getMessage());
+    }
+
+    @Test
+    public void givenBlankInterests_whenGetByInterests_thenExceptionIsThrown() {
+        Exception ex = Assertions.assertThrows(
+                RuntimeException.class,
+                () -> userService.getUsersByInterests(""));
+
+        assertEquals("Interests cannot be empty.", ex.getMessage());
+    }
+
+    // Story 03 unit tests
+
+    @Test
+    public void givenUsersWithProfiles_whenGetOlderThanWithInterests_thenMatchingUsersReturnedSortedByLocation() {
+        // given
+        be.ucll.model.Profile pA = new be.ucll.model.Profile("Dev", "Antwerp", "Science");
+        be.ucll.model.User userA = new be.ucll.model.User("User A", 30, "usera@ucll.be", "password1");
+        userA.setProfile(pA);
+
+        be.ucll.model.Profile pB = new be.ucll.model.Profile("Dev", "Brussels", "Science");
+        be.ucll.model.User userB = new be.ucll.model.User("User B", 25, "userb@ucll.be", "password2");
+        userB.setProfile(pB);
+
+        userRepository.users.add(userA);
+        userRepository.users.add(userB);
+
+        // when
+        List<User> result = userService.getUsersOlderThanWithInterestsSortedByLocation(20, "Science");
+
+        // then
+        assertEquals(2, result.size());
+        // sorted by location: Antwerp before Brussels
+        assertEquals("usera@ucll.be", result.get(0).getEmail());
+        assertEquals("userb@ucll.be", result.get(1).getEmail());
+    }
+
+    @Test
+    public void givenNoUsersMatchAgeAndInterests_whenGetOlderThanWithInterests_thenExceptionIsThrown() {
+        Exception ex = Assertions.assertThrows(
+                RuntimeException.class,
+                () -> userService.getUsersOlderThanWithInterestsSortedByLocation(100, "Science"));
+
+        assertEquals("No users found older than 100 with interests containing: Science", ex.getMessage());
     }
 
 }
